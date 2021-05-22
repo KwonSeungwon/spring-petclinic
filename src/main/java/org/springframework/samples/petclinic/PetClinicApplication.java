@@ -23,12 +23,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * PetClinic Spring Boot Application.
  *
  * @author Dave Syer
- *
  */
 @SpringBootApplication(proxyBeanMethods = false)
 public class PetClinicApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { // String symbol관련 에러가 날시 인텔리제이에서 project
+												// structure JDK 버전을 맞춰주면 됨.
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
 
