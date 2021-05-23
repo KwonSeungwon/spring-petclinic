@@ -1,0 +1,45 @@
+<IOC(Inversion of Control)>
+일반적인 (의존성에 대한) 제어권: “내가 사용할 의존성은 내가 만든다.”
+-- 정리하자면 A라는 클래스가 B라는 클래스에 의존적이라면 예) 부모(B)와 자식관계(A) 인경우 spring IOC를 통해 의존적인 관계를 만드는 것
+class OwnerController {
+   private OwnerRepository repository = new OwnerRepository();
+}
+IoC: “내가 사용할 의존성을 누군가 알아서 주겠지”
+내가 사용할 의존성의 타입(또는 인터페이스)만 맞으면 어떤거든 상관없다.
+그래야 내 코드 테스트 하기도 편하지.
+
+class OwnerController {
+   private OwnerRepository repo;
+
+   public OwnerController(OwnerRepository repo) {
+       this.repo = repo;
+   }
+
+   // repo를 사용합니다.
+}
+
+class OwnerControllerTest {
+   @Test
+   public void create() {
+         OwnerRepository repo = new OwnerRepository();
+         OwnerController controller = new OwnerController(repo);
+   }
+}
+
+참고
+https://martinfowler.com/articles/injection.html
+<IoC (Inversion of Control) 컨테이너>
+컨테이너(Container) : 개발자가 작성한 코드의 처리과정을 위임받은 독립적인 존재
+빈(bean) : 컨테이너가 관리하는 객체(클래스) Spring IOC를 통해 인스턴스화, 관리, 생성됨. Bean Container은 Bean객체를 사용할 수 있게해줌
+
+빈(bean)을 만들고 엮어주며 제공해준다.
+빈 설정
+이름 또는 ID
+타입
+스코프
+아이러니하게도 컨테이너를 직접 쓸 일은 많지 않다.
+
+참고
+https://github.com/spring-guides/understanding/tree/master/application-context
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html

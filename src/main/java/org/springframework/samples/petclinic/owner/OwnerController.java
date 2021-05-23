@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.apache.catalina.core.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.visit.VisitRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,11 +87,13 @@ class OwnerController {
 		Collection<Owner> results = null;
 		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName().length() > 1) {
-//			results = this.owners.findByLastName(owner.getLastNmae());
+			// results = this.owners.findByLastName(owner.getLastNmae());
 			results = this.owners.findByLastNameContains(owner.getLastName());
-		} else if (owner.getFirstName().length() > 1) {
+		}
+		else if (owner.getFirstName().length() > 1) {
 			results = this.owners.findByFirstName(owner.getFirstName());
-		} else {
+		}
+		else {
 			owner.setLastName("");
 			results = this.owners.findByLastName(owner.getLastName());
 		}
