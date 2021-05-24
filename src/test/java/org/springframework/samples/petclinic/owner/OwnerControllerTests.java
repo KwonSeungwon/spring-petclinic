@@ -63,9 +63,6 @@ class OwnerControllerTests {
 	@MockBean
 	private VisitRepository visits;
 
-	@Autowired
-	ApplicationContext applicationContext;
-
 	private Owner george;
 
 	@BeforeEach

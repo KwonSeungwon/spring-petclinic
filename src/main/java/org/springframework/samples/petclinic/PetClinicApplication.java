@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Dave Syer
  */
-@SpringBootApplication(proxyBeanMethods = false)
+@SpringBootApplication(proxyBeanMethods = false) // 하위 패키지 내의 모든 빈등록 어노테이션을 찾기시작함.
 public class PetClinicApplication {
 
 	public static void main(String[] args) { // String symbol관련 에러가 날시 인텔리제이에서 project

@@ -43,7 +43,11 @@ class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-	private final OwnerRepository owners;
+	private final OwnerRepository owners; //전통적인방법
+
+	//Autwried를 이용한 방법
+	//@Autowired
+	//private OwnerRepository ownerRepository;
 
 	private VisitRepository visits;
 

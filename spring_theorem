@@ -43,3 +43,18 @@ https://martinfowler.com/articles/injection.html
 https://github.com/spring-guides/understanding/tree/master/application-context
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html
+[Bean 등록방법]
+<Component Scanning>
+- @Component
+- @Repository
+- @Service
+- @Controller
+- @Configuration
+※ Repository의 경우 Spring JPA가 제공하는 기능이며 Repository를 extends(상속) 받고 있으면 알아서 Bean등록을 해준다.(구현체들을 만들어서 해줌)
+또는 직접 일일히 XML이나 자바 설정 파일에 등록
+[사용법]
+- @Autowired 또는 @Inject
+- 또는 ApplicationContext에서 getBean()으로 직접 꺼내거나
+[특징]
+- 오로지 “빈"들만 의존성 주입을 해줍니다.
+
