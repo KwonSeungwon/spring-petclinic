@@ -43,7 +43,7 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 * found)
 	 */
 	@Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :lastName%")
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) // Spring AOP 기반으로 만들어진 어노테이션
 	Collection<Owner> findByLastName(@Param("lastName") String lastName);
 
 	@Transactional(readOnly = true)

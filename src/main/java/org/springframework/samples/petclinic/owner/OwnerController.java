@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.visit.VisitRepository;
 import org.springframework.stereotype.Controller;
@@ -43,18 +42,35 @@ class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-	private final OwnerRepository owners; //전통적인방법
+	private OwnerRepository owners; // 전통적인방법
 
-	//Autwried를 이용한 방법
-	//@Autowired
-	//private OwnerRepository ownerRepository;
+	// Autwried를 이용한 방법
+	// @Autowired
+	// private OwnerRepository ownerRepository;
+
+	// @Autowired
+	// PetRepository petRepository;
+
+	// private PetRepository pets; // 생성자를 통한 주입떄는 final을 이용하는게 좋음(참조된게 바뀌지 않게)
+	//
+	// @Autowired
+	// public void setPets(PetRepository petRepository) { // setter를 이용한 injection
+	// this.pets = petRepository;
+	// }
 
 	private VisitRepository visits;
 
-	public OwnerController(OwnerRepository clinicService, VisitRepository visits) {
+	public OwnerController(OwnerRepository clinicService,
+			VisitRepository visits /* , PetRepository petRepository */) { // 생성자를 통한 의존성주입
 		this.owners = clinicService;
 		this.visits = visits;
+		// this.pets = petRepository; // 생성자를 통한주입
 	}
+
+	// @Autowired
+	// public void setOwners(OwnerRepository owners) { //setten와 Autowried를 이용한 의존성주입
+	// this.owners = owners;
+	// }
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {

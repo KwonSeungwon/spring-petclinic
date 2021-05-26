@@ -1,6 +1,7 @@
 <IOC(Inversion of Control)>
 일반적인 (의존성에 대한) 제어권: “내가 사용할 의존성은 내가 만든다.”
 -- 정리하자면 A라는 클래스가 B라는 클래스에 의존적이라면 예) 부모(B)와 자식관계(A) 인경우 spring IOC를 통해 의존적인 관계를 만드는 것
+※ 싱글톤을 이용하여 구현됨.
 class OwnerController {
    private OwnerRepository repository = new OwnerRepository();
 }
@@ -57,4 +58,70 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 - 또는 ApplicationContext에서 getBean()으로 직접 꺼내거나
 [특징]
 - 오로지 “빈"들만 의존성 주입을 해줍니다.
+[의존성 주입 (Dependency Injection)]
+※ 생성자를 통한 의존성 주입 : 스프링 4.3(이상)추가 / 생성자가 1개이고 생성자로 주입받는 레퍼런스 변수들이 Bean으로 등록되었다면 의존성을 자동으로 주입해줌.
+- @Autowired / @Inject를 어디에 붙일까?
+- 생성자 -> spring reference에서 권장하는 전통적인 방식(의존성 주입에 필수적인 요소들을 강제적으로 생성할 수 있게 하기때문에), 순환참조가 발생할 수 있음(A,B가 둘 다 참조하는 경우 서버에러)
+- 필드
+- Setter
+<과제>
+- OwnerController에 petRepository 주입하기
+
+
+[AOP]
+AOP(Aspect Oriented Programming) : 관점지향프로그래밍 / 프록시 패턴으로 사용하여 구현됨.
+class A {
+   method a () {
+           AAAA -> AAA
+           오늘은 7월 4일 미국 독립 기념일이래요.
+           BBBB -> BB
+   }
+
+   method b () {
+           AAAA -> AAA
+           저는 아침에 운동을 다녀와서 밥먹고 빨래를 했습니다.
+           BBBB -> BB
+   }
+}
+
+class B {
+  method c() {
+          AAAA -> AAA
+          점심은 이거 찍느라 못먹었는데 저녁엔 제육볶음을 먹고 싶네요.
+          BBBB -> BB
+  }
+}
+모아 놓은 AAAA 와 BBBB
+
+class A {
+   method a () {
+           오늘은 7월 4일 미국 독립 기념일이래요.
+   }
+
+   method b () {
+           저는 아침에 운동을 다녀와서 밥먹고 빨래를 했습니다.
+   }
+}
+
+class B {
+  method c() {
+          점심은 이거 찍느라 못먹었는데 저녁엔 제육볶음을 먹고 싶네요.
+  }
+}
+
+class AAAABBBB { // 메소드 a와 b를 모아놓은 클래스(AOP)
+    method aaaabbb(JoinPoint point) {
+         AAAA
+	  point.execute()
+         BBBB
+    }
+}
+@Transactional = AOP 기준으로 만들어진 어노테이션
+Spring에서 제공하는 기능 스탑워치 : StopWatch stopwatch = new StopWatch(); -> start, end등의 메소드 존재.
+[AOP 구현방법]
+- 컴파일  A.java ----(AOP)---> A.class (AspectJ)
+- 바이트코드 조작 A.java -> A.class ---(AOP)---> 메모리 (AspectJ)
+- 프록시 패턴 (스프링 AOP)
+<프록시 패턴>
+- https://refactoring.guru/design-patterns/proxy
 

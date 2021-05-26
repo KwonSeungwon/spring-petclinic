@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.saplme;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +8,10 @@ import org.springframework.context.annotation.Configuration;
 public class SampleConfiguration {
 
 	@Bean
-	public SampleControllerTest sampleControllerTest() { //@Bean 어노테이션을 이용해 직접 JavaConfiguration을 이용해 @Bean 설정
+	public SampleControllerTest sampleControllerTest() { // @Bean 어노테이션을 이용해 직접
+															// JavaConfiguration을 이용해
+															// @Bean 설정
 		return new SampleControllerTest();
 	}
-
 
 }
