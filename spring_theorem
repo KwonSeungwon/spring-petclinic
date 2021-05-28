@@ -1,5 +1,6 @@
 <IOC(Inversion of Control)>
 일반적인 (의존성에 대한) 제어권: “내가 사용할 의존성은 내가 만든다.”
+의존성 주입 : 사용자에게 어떤 클라이언트(기능)을 사용할 지 알려주는 것
 -- 정리하자면 A라는 클래스가 B라는 클래스에 의존적이라면 예) 부모(B)와 자식관계(A) 인경우 spring IOC를 통해 의존적인 관계를 만드는 것
 ※ 싱글톤을 이용하여 구현됨.
 class OwnerController {
@@ -116,12 +117,15 @@ class AAAABBBB { // 메소드 a와 b를 모아놓은 클래스(AOP)
          BBBB
     }
 }
-@Transactional = AOP 기준으로 만들어진 어노테이션
-Spring에서 제공하는 기능 스탑워치 : StopWatch stopwatch = new StopWatch(); -> start, end등의 메소드 존재.
 [AOP 구현방법]
 - 컴파일  A.java ----(AOP)---> A.class (AspectJ)
 - 바이트코드 조작 A.java -> A.class ---(AOP)---> 메모리 (AspectJ)
 - 프록시 패턴 (스프링 AOP)
 <프록시 패턴>
 - https://refactoring.guru/design-patterns/proxy
+Spring에서 제공하는 기능 스탑워치 : StopWatch stopwatch = new StopWatch(); -> start, end등의 메소드 존재.
+프록시 패턴(대리) : Payment(인터페이스), Store(상점), Cash(현금결제/클라이언트)에서
+CreditCard(카드결제)라는 프록시(대리)를 통해 Cash클래스를 바꾸지 않고도 기능을 추가 하는 것이 AOP이다
+@Transactional = AOP 기준으로 만들어진 어노테이션
+
 
