@@ -8,16 +8,10 @@ public class CreditCard implements Payment {
 
 	@Override
 	public void pay(int amount) {
-		StopWatch stopWatch = new StopWatch();
-		stopWatch.start();
-		cash.pay(amount);
-
-		stopWatch.stop();
-		System.out.println(stopWatch.prettyPrint());
-//		if(amount > 100) {
-//			System.out.println(amount + "신용카드");
-//		} else {
-//			cash.pay(amount);
-//		}
+		if(amount > 100) { // CreditCard 클래스가 Cash클래스에 신용카드 결제라는 기능을 대신 구현해줌.(본 클래스는 변경X)
+			System.out.println(amount + "신용카드");
+		} else {
+			cash.pay(amount);
+		}
 	}
 }
